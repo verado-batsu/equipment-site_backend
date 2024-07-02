@@ -2,11 +2,9 @@
   "name": "equipment-site_backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "jest",
     "start": "nodemon ./server.js",
-    
     "lint": "eslint **/*.js",
     "lint:fix": "eslint --fix **/*.js"
   },
