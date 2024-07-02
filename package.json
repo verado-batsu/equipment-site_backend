@@ -2,6 +2,9 @@
   "name": "equipment-site_backend",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "scripts": {
     "test": "jest",
     "start": "nodemon ./server.js",
