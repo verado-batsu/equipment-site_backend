@@ -1,17 +1,15 @@
 const express = require('express')
 
+const equipmetsController = require("../../controllers/equipments")
+
+const schemas = require('../../schemas/equipmets')
+
+const { validateBody } = require("../../decorators");
+
 const router = express.Router()
 
-router.get("/", (req, res) => {
-	res.json([{
-		title: 'Avatar'
-	}]);
-})
+router.get("/", equipmetsController.getAllEquipments)
 
-router.get("/:id", (req, res) => {
-	res.json({
-		title: 'M410'
-	});
-})
+// router.get("/:id", )
 
 module.exports = router;

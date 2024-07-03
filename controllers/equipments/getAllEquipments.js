@@ -1,6 +1,6 @@
-const { Contact } = require("../../models");
+const { Equipment } = require("../../models");
 
-const getAllContacts = async (req, res) => {
+const getAllEquipments = async (req, res) => {
 	const { _id: owner } = req.user;
 	const { page = 1, limit = 10, ...query } = req.query;
 	const skip = (page - 1) * limit;
@@ -8,4 +8,4 @@ const getAllContacts = async (req, res) => {
 	res.json(contacts);
 }
 
-module.exports = getAllContacts;
+module.exports = getAllEquipments;
