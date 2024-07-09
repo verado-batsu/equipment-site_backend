@@ -2,12 +2,12 @@ const { Equipment } = require("../../models");
 const { HttpError } = require("../../helpers");
 
 const deleteEquipmentById = async (req, res) => {
-	const { contactId } = req.params;
-	const deletedContact = await Equipment.findByIdAndDelete(contactId)
-	if (!deletedContact) {
+	const { equipmentId } = req.params;
+	const deletedEquipment = await Equipment.findByIdAndDelete(equipmentId)
+	if (!deletedEquipment) {
 		throw HttpError(404);
 	}
-	res.json({ message: 'contact deleted' });
+	res.json({ message: 'equipment deleted' });
 }
 
 module.exports = deleteEquipmentById;

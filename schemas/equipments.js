@@ -21,5 +21,4 @@ const equipmentAddSchema = Joi.object({
 
 module.exports = {
 	equipmentAddSchema,
-	// contactUpdateFavoriteSchema
 }

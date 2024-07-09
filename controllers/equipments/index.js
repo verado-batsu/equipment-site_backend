@@ -5,15 +5,13 @@ const {
 const getAllEquipments = require("./getAllEquipments");
 const getEquipmentById = require("./getEquipmentById");
 const addNewEquipment = require("./addNewEquipment");
-// const deleteContactById = require("./deleteContactById");
-// const updateContactbyId = require("./updateContactbyId");
-// const updateStatusContact = require("./updateStatusContact");
+const deleteEquipmentById = require("./deleteEquipmentById");
+const updateEquipmentbyId = require("./updateEquipmentbyId");
 
 module.exports = {
 	getAllEquipments: ctrlWrapper(getAllEquipments),
 	getEquipmentById: ctrlWrapper(getEquipmentById),
 	addNewEquipment: ctrlWrapper(addNewEquipment),
-	// deleteContactById: ctrlWrapper(deleteContactById),
-	// updateContactbyId: ctrlWrapper(updateContactbyId),
-	// updateStatusContact: ctrlWrapper(updateStatusContact)
+	deleteEquipmentById: ctrlWrapper(deleteEquipmentById),
+	updateEquipmentbyId: ctrlWrapper(updateEquipmentbyId),
 }
