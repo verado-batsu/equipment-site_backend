@@ -18,10 +18,6 @@ const userSchema = new Schema({
 		type: String,
 		minlength: 6,
 		required: true,
-	},
-	teacherId: {
-		type: String,
-		required: true,
 	}
 }, { versionKey: false, timestamps: true })
 
