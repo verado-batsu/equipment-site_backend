@@ -3,9 +3,11 @@ const bcrypt = require("bcrypt")
 const { HttpError } = require("../../helpers");
 const { User } = require("../../models");
 
+const { TEACHER_ID } = process.env;
+
 const signup = async (req, res) => {
 	const { name, email, password, teacherId } = req.body;
-	const { TEACHER_ID } = process.env;
+
 	if (teacherId !== TEACHER_ID) {
 		throw HttpError(400, "Incorrect teacher id")
 	}
