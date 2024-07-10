@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const {categories} = require('../constants/equipments')
+const { categories } = require('../constants/equipments');
 const { handleMongooseError } = require("../helpers")
 
 const equipmentSchema = new Schema({

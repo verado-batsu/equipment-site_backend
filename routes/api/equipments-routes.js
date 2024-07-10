@@ -1,20 +1,26 @@
 const express = require('express')
 
-const equipmentsController = require("../../controllers/equipments");
+const {
+	getAllEquipments,
+	getEquipmentById,
+	addNewEquipment,
+	updateEquipmentbyId,
+	deleteEquipmentById
+} = require("../../controllers/equipments");
 const { equipmentAddSchema } = require('../../schemas/equipments');
 const { validateBody } = require("../../decorators");
 const { isValidId } = require('../../middlewares');
 
 const router = express.Router()
 
-router.get("/", equipmentsController.getAllEquipments)
+router.get("/", getAllEquipments)
 
-router.get("/:equipmentId", isValidId, equipmentsController.getEquipmentById)
+router.get("/:equipmentId", isValidId, getEquipmentById)
 
-router.post('/', validateBody(equipmentAddSchema), equipmentsController.addNewEquipment)
+router.post('/', validateBody(equipmentAddSchema), addNewEquipment)
 
-router.put('/:equipmentId', isValidId, validateBody(equipmentAddSchema), equipmentsController.updateEquipmentbyId)
+router.put('/:equipmentId', isValidId, validateBody(equipmentAddSchema), updateEquipmentbyId)
 
-router.delete('/:equipmentId', isValidId, equipmentsController.deleteEquipmentById)
+router.delete('/:equipmentId', isValidId, deleteEquipmentById)
 
 module.exports = router;
