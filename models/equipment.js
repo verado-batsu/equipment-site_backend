@@ -23,6 +23,15 @@ const equipmentSchema = new Schema({
 	describe: {
 		type: String,
 	},
+	ownerId: {
+		type: Schema.Types.ObjectId,
+		ref: "user",
+		required: true,
+	},
+	ownerName: {
+		type: String,
+		required: true,
+	}
 }, { versionKey: false, timestamps: true })
 
 equipmentSchema.post("save", handleMongooseError)
