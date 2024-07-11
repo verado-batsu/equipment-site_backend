@@ -9,7 +9,7 @@ const {
 } = require("../../controllers/equipments");
 const { equipmentAddSchema } = require('../../schemas/equipments');
 const { validateBody } = require("../../decorators");
-const { isValidId } = require('../../middlewares');
+const { isValidId, authenticate } = require('../../middlewares');
 
 const router = express.Router()
 
@@ -17,10 +17,10 @@ router.get("/", getAllEquipments)
 
 router.get("/:equipmentId", isValidId, getEquipmentById)
 
-router.post('/', validateBody(equipmentAddSchema), addNewEquipment)
+router.post('/', authenticate, validateBody(equipmentAddSchema), addNewEquipment)
 
-router.put('/:equipmentId', isValidId, validateBody(equipmentAddSchema), updateEquipmentbyId)
+router.put('/:equipmentId', authenticate, isValidId, validateBody(equipmentAddSchema), updateEquipmentbyId)
 
-router.delete('/:equipmentId', isValidId, deleteEquipmentById)
+router.delete('/:equipmentId', authenticate, isValidId, deleteEquipmentById)
 
 module.exports = router;
