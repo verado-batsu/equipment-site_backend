@@ -2,7 +2,7 @@ const { Equipment } = require("../../models");
 const { HttpError } = require("../../helpers");
 
 const updateEquipmentbyId = async (req, res) => {
-	const { _id: ownerId, name: ownerName } = req.user;
+	const { _id: owner } = req.user;
 	const { equipmentId } = req.params;
 	
 	// const equipment = await Equipment.findById(equipmentId);
@@ -13,7 +13,7 @@ const updateEquipmentbyId = async (req, res) => {
 	// 	throw HttpError(403, `Equipment doesn't belong to this account`);
 	// }
 
-	const updatedContact = await Equipment.findByIdAndUpdate(equipmentId, {...req.body, ownerId, ownerName}, { new: true })
+	const updatedContact = await Equipment.findByIdAndUpdate(equipmentId, {...req.body, owner}, { new: true })
 	if (!updatedContact) {
 		throw HttpError(404);
 	}
