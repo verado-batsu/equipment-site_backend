@@ -30,6 +30,8 @@ const equipmentSchema = new Schema({
 	},
 }, { versionKey: false, timestamps: true })
 
+// equipmentSchema.index({ model: 'text' });
+
 equipmentSchema.post("save", handleMongooseError)
 
 const Equipment = model("equipments", equipmentSchema)

@@ -5,7 +5,6 @@ const { categories } = require('../constants/equipments')
 const equipmentAddSchema = Joi.object({
 	category: Joi.string().valid(...categories).required(),
 	model: Joi.string().required(),
-	photos: Joi.array().items(Joi.string()),
 	features: Joi.string().required(),
 	describe: Joi.string(),
 })
