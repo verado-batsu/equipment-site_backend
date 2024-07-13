@@ -1,5 +1,7 @@
+const fs = require("fs/promises");
+
 const { Equipment } = require("../../models");
-const { HttpError } = require("../../helpers");
+const { HttpError, cloudinary } = require("../../helpers");
 
 const updateEquipmentbyId = async (req, res) => {
 	const { _id: owner } = req.user;
@@ -13,11 +15,35 @@ const updateEquipmentbyId = async (req, res) => {
 	// 	throw HttpError(403, `Equipment doesn't belong to this account`);
 	// }
 
-	const updatedContact = await Equipment.findByIdAndUpdate(equipmentId, {...req.body, owner}, { new: true })
-	if (!updatedContact) {
+	const oldEquipment = await Equipment.findById(equipmentId)
+	if (!oldEquipment) {
 		throw HttpError(404);
 	}
-	
+
+	let updatedContact;
+	if (req.files) {
+		const arrayOfOldPaths = req.files.map(file => file.path);
+		
+		oldEquipment.photos.forEach(async (photo) => {
+			await cloudinary.uploader.destroy(photo.title)
+		})
+
+		const arrayOfPhotosData = await Promise.all(arrayOfOldPaths.map(async (path) => {
+			const {public_id: title, url} = await cloudinary.uploader.upload(path,
+				{
+					folder: "equipment-site"
+				})
+			
+			await fs.unlink(path)
+
+			return {title, url};
+		}))
+
+		updatedContact = await Equipment.findByIdAndUpdate(equipmentId, {...req.body, photos: arrayOfPhotosData, owner}, { new: true })
+	} else {
+		updatedContact = await Equipment.findByIdAndUpdate(equipmentId, {...req.body, owner}, { new: true })
+	}
+
 	res.json(updatedContact)
 }
 

@@ -16,7 +16,6 @@ const addNewEquipment = async (req, res) => {
 		await fs.unlink(path)
 
 		return {title, url};
-
 	}))
 
 	const addedEquipment = await Equipment.create({ ...req.body, photos: arrayOfPhotosData, owner});
@@ -31,4 +30,10 @@ module.exports = addNewEquipment;
 // 	"photos": ["penis", "jopa"],
 // 	"features": "Обороты: 4000 м/с \n Потужність двигуна: 40 кВт",
 // 	"describe": "super cool"
+// }
+
+// {
+//     "category": "forging",
+// 	"model": "C410",
+// 	"features": "Обороты: 4000 м/с \n Потужність двигуна: 40 кВт"
 // }

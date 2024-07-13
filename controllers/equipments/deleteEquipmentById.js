@@ -18,9 +18,9 @@ const deleteEquipmentById = async (req, res) => {
 		throw HttpError(404);
 	}
 
-	deletedEquipment.photos.forEach(async (photo) => [
+	deletedEquipment.photos.forEach(async (photo) => {
 		await cloudinary.uploader.destroy(photo.title)
-	])
+	})
 	
 	res.json({ message: 'equipment deleted' });
 }
