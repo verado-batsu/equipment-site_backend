@@ -7,18 +7,19 @@ const addNewEquipment = async (req, res) => {
 	const { _id: owner } = req.user;
 	const arrayOfOldPaths = req.files.map(file => file.path);
 
-	const arrayOfPhotosUrl = await Promise.all(arrayOfOldPaths.map(async (path) => {
-		const { url } = await cloudinary.uploader.upload(path,
+	const arrayOfPhotosData = await Promise.all(arrayOfOldPaths.map(async (path) => {
+		const {public_id: title, url} = await cloudinary.uploader.upload(path,
 			{
 				folder: "equipment-site"
 			})
 		
 		await fs.unlink(path)
 
-		return url;
+		return {title, url};
+
 	}))
 
-	const addedEquipment = await Equipment.create({ ...req.body, photos: arrayOfPhotosUrl, owner});
+	const addedEquipment = await Equipment.create({ ...req.body, photos: arrayOfPhotosData, owner});
 	res.status(201).json(addedEquipment);
 }
 

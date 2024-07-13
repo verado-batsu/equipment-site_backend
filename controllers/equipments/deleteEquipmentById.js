@@ -1,5 +1,5 @@
 const { Equipment } = require("../../models");
-const { HttpError } = require("../../helpers");
+const { HttpError, cloudinary } = require("../../helpers");
 
 const deleteEquipmentById = async (req, res) => {
 	// const { _id: ownerId } = req.user;
@@ -17,6 +17,10 @@ const deleteEquipmentById = async (req, res) => {
 	if (!deletedEquipment) {
 		throw HttpError(404);
 	}
+
+	deletedEquipment.photos.forEach(async (photo) => [
+		await cloudinary.uploader.destroy(photo.title)
+	])
 	
 	res.json({ message: 'equipment deleted' });
 }
