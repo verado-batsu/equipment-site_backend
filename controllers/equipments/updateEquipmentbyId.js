@@ -20,7 +20,7 @@ const updateEquipmentbyId = async (req, res) => {
 		throw HttpError(404);
 	}
 
-	let updatedContact;
+	let updatedEquipment;
 	if (req.files) {
 		const arrayOfOldPaths = req.files.map(file => file.path);
 		
@@ -39,12 +39,12 @@ const updateEquipmentbyId = async (req, res) => {
 			return {title, url};
 		}))
 
-		updatedContact = await Equipment.findByIdAndUpdate(equipmentId, {...req.body, photos: arrayOfPhotosData, owner}, { new: true })
+		updatedEquipment = await Equipment.findByIdAndUpdate(equipmentId, {...req.body, photos: arrayOfPhotosData, owner}, { new: true })
 	} else {
-		updatedContact = await Equipment.findByIdAndUpdate(equipmentId, {...req.body, owner}, { new: true })
+		updatedEquipment = await Equipment.findByIdAndUpdate(equipmentId, {...req.body, owner}, { new: true })
 	}
 
-	res.json(updatedContact)
+	res.json(updatedEquipment)
 }
 
 module.exports = updateEquipmentbyId;
