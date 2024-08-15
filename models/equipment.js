@@ -20,7 +20,7 @@ const equipmentSchema = new Schema({
 		}],
 	},
 	features: {
-		type: String,
+		type: [String],
 		required: true,
 	},
 	describe: {

@@ -4,7 +4,7 @@ const { HttpError } = require("../../helpers");
 const { categories } = require("../../constants/equipments");
 
 const getAllEquipments = async (req, res) => {
-	const { page = 1, limit = 10, category = "", q = ''} = req.query;
+	const { page = 1, limit = 10, category = "", q = ""} = req.query;
 	if (category && !categories.some(value => value === category)) {
 		throw HttpError(400, `Category "${category}" doesn't exist`)
 	}
