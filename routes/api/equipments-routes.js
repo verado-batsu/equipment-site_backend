@@ -19,7 +19,7 @@ router.get("/:equipmentId", isValidId, getEquipmentById)
 
 router.post('/', authenticate, upload.array("photos[]", 8), validateBody(equipmentAddSchema), addNewEquipment)
 
-router.put('/:equipmentId', authenticate, isValidId, upload.array("photos", 8), validateBody(equipmentAddSchema), updateEquipmentbyId)
+router.put('/:equipmentId', authenticate, isValidId, upload.array("photos[]", 8), validateBody(equipmentAddSchema), updateEquipmentbyId)
 
 router.delete('/:equipmentId', authenticate, isValidId, deleteEquipmentById)
 
