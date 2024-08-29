@@ -22,10 +22,9 @@ const getAllEquipments = async (req, res) => {
 		equipments = await Equipment.find({}, "", { skip, limit }).populate("owner", "name");
 	}
 	
-	// const total = await Equipment.where({}).countDocuments();
-	// console.log(total)
+	const total = await Equipment.where({}).countDocuments();
 
-	res.json(equipments);
+	res.json({equipments, total});
 }
 
 module.exports = getAllEquipments;
