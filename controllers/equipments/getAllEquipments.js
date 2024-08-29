@@ -22,7 +22,7 @@ const getAllEquipments = async (req, res) => {
 		equipments = await Equipment.find({}, "", { skip, limit }).populate("owner", "name");
 	}
 	
-	const total = await Equipment.where({}).countDocuments({ category });
+	const total = category === '' ? await Equipment.estimatedDocumentCount() : await Equipment.countDocuments({ category });
 
 	res.json({equipments, total});
 }
