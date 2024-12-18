@@ -9,9 +9,20 @@ const equipmentSchema = new Schema({
 		enum: categories,
 		required: true,
 	},
+	typeOfEquipment: {
+		type: String,
+		required: true,
+	},
 	model: {
 		type: String,
 		required: true,
+	},
+	mainFeature: {
+		type: String,
+		required: true,
+	},
+	valueOfMainFeature: {
+		type: Number,
 	},
 	photos: {
 		type: [{

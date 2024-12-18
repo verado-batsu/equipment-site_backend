@@ -23,17 +23,3 @@ const addNewEquipment = async (req, res) => {
 }
 
 module.exports = addNewEquipment;
-
-// {
-//     "category": "pressing",
-// 	"model": "UWDRW0867",
-// 	"photos": ["penis", "jopa"],
-// 	"features": "Обороты: 4000 м/с \n Потужність двигуна: 40 кВт",
-// 	"describe": "super cool"
-// }
-
-// {
-//     "category": "forging",
-// 	"model": "C410",
-// 	"features": "Обороты: 4000 м/с \n Потужність двигуна: 40 кВт"
-// }
