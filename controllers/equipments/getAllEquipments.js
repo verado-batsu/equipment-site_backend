@@ -4,7 +4,7 @@ const { HttpError } = require("../../helpers");
 const { categories } = require("../../constants/equipments");
 
 const getAllEquipments = async (req, res) => {
-	const { page = 1, limit = 10, category = "", q = ""} = req.query;
+	const { page = 1, limit = 10, category = "", q = "", pp = "", fp = ""} = req.query;
 	if (category && !categories.some(value => value === category)) {
 		throw HttpError(400, `Category "${category}" doesn't exist`)
 	}
@@ -18,6 +18,14 @@ const getAllEquipments = async (req, res) => {
 		equipments = await Equipment.find({ category }, "", { skip, limit }).populate("owner", "name");
 	} else if (q) {
 		equipments = await Equipment.find({ model: { $regex: q, $options: "i" } }, "", { skip, limit }).populate("owner", "name");
+	} else if (pp) {
+		equipments = await Equipment.find({ mainFeature: "Сила преса", valueOfMainFeature: { $gte: pp } }, "", { skip, limit }).populate("owner", "name");
+	} else if (pp && category) {
+		equipments = await Equipment.find({ category,mainFeature: "Сила преса", valueOfMainFeature: { $gte: pp } }, "", { skip, limit }).populate("owner", "name");
+	} else if (fp) {
+		equipments = await Equipment.find({ mainFeature: "Маса падаючих частин", valueOfMainFeature: { $gte: fp } }, "", { skip, limit }).populate("owner", "name");
+	} else if (fp && category) {
+		equipments = await Equipment.find({ category,mainFeature: "Маса падаючих частин", valueOfMainFeature: { $gte: fp } }, "", { skip, limit }).populate("owner", "name");
 	} else {
 		equipments = await Equipment.find({}, "", { skip, limit }).populate("owner", "name");
 	}
