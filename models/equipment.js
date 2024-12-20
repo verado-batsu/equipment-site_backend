@@ -21,9 +21,7 @@ const equipmentSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	valueOfMainFeature: {
-		type: Number,
-	},
+	valueOfMainFeature: Number,
 	photos: {
 		type: [{
 			title: String,
@@ -34,9 +32,7 @@ const equipmentSchema = new Schema({
 		type: [String],
 		required: true,
 	},
-	describe: {
-		type: String,
-	},
+	describe: String,
 	owner: {
 		type: Schema.Types.ObjectId,
 		ref: "user",
