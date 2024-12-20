@@ -19,13 +19,13 @@ const getAllEquipments = async (req, res) => {
 	} else if (q) {
 		equipments = await Equipment.find({ model: { $regex: q, $options: "i" } }, "", { skip, limit }).populate("owner", "name");
 	} else if (pp) {
-		equipments = await Equipment.find({ mainFeature: "Сила преса", valueOfMainFeature: { $gte: pp } }, "", { skip, limit }).populate("owner", "name");
+		equipments = await Equipment.find({ mainFeature: { $regex: "Сила преса", $options: "i" }, valueOfMainFeature: { $gte: pp } }, "", { skip, limit }).populate("owner", "name");
 	} else if (pp && category) {
-		equipments = await Equipment.find({ category,mainFeature: "Сила преса", valueOfMainFeature: { $gte: pp } }, "", { skip, limit }).populate("owner", "name");
+		equipments = await Equipment.find({ category,mainFeature: { $regex: "Сила преса", $options: "i" }, valueOfMainFeature: { $gte: pp } }, "", { skip, limit }).populate("owner", "name");
 	} else if (fp) {
-		equipments = await Equipment.find({ mainFeature: "Маса падаючих частин", valueOfMainFeature: { $gte: fp } }, "", { skip, limit }).populate("owner", "name");
+		equipments = await Equipment.find({ mainFeature: { $regex: "Маса падаючих частин", $options: "i" }, valueOfMainFeature: { $gte: fp } }, "", { skip, limit }).populate("owner", "name");
 	} else if (fp && category) {
-		equipments = await Equipment.find({ category,mainFeature: "Маса падаючих частин", valueOfMainFeature: { $gte: fp } }, "", { skip, limit }).populate("owner", "name");
+		equipments = await Equipment.find({ category,mainFeature: { $regex: "Маса падаючих частин", $options: "i" }, valueOfMainFeature: { $gte: fp } }, "", { skip, limit }).populate("owner", "name");
 	} else {
 		equipments = await Equipment.find({}, "", { skip, limit }).populate("owner", "name");
 	}
