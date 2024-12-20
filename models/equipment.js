@@ -21,7 +21,10 @@ const equipmentSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	valueOfMainFeature: Number,
+	valueOfMainFeature: {
+		type: Number,
+		default: null, 
+	},
 	photos: {
 		type: [{
 			title: String,
@@ -32,15 +35,16 @@ const equipmentSchema = new Schema({
 		type: [String],
 		required: true,
 	},
-	describe: String,
+	describe: {
+    type: String,
+    default: "",
+},
 	owner: {
 		type: Schema.Types.ObjectId,
 		ref: "user",
 		required: true,
 	},
 }, { versionKey: false, timestamps: true })
-
-// equipmentSchema.index({ model: 'text' });
 
 equipmentSchema.post("save", handleMongooseError)
 
